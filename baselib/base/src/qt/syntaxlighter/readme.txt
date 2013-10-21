@@ -1,0 +1,2 @@
+xmlsyntaxhighlighter.h xml的词法高亮类
+luasyntaxhighlighter.h lua的词法高亮类
