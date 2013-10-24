@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 #ifndef ENGINE_API
-	#define ENGINE_API
+	#define ENGINE_API extern
 #endif
 
 ENGINE_API enum CODE_PAGE

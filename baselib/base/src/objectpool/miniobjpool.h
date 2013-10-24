@@ -2,7 +2,7 @@
 #define MINI_OBJ_POOL_H
 
 #ifndef ENGINE_API
-	#define ENGINE_API
+	#define ENGINE_API extern
 #endif
 
 class ENGINE_API MiniObjPool

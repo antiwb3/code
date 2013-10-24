@@ -11,7 +11,7 @@
 
 
 #ifndef ENGINE_API
-    #define ENGINE_API
+    #define ENGINE_API extern
 #endif
 
 #include <map>

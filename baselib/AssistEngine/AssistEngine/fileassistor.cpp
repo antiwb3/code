@@ -62,8 +62,8 @@
 	} FA_WHILE_FALSE_NO_WARNING
 #endif
 
-#ifndef toExit0
-#define toExit0(Condition) \
+#ifndef jn2Exit0
+#define jn2Exit0(Condition) \
 	do  \
 	{   \
 		if (!(Condition))       \
@@ -97,23 +97,23 @@ ENGINE_API int fileContent(FILE* file, unsigned char** content, size_t offset /*
 	size_t orgoffset	  =  0;
 	unsigned char* buffer =  0;
 
-	toExit0(file);
-	toExit0(content);
+	jn2Exit0(file);
+	jn2Exit0(content);
 
 	orgoffset = ftell(file);
 	fseek(file, (long)offset, SEEK_SET);
 
 	filesize = fileSize(file);
-	toExit0(filesize >= 0);
-	toExit0(offset < filesize);
+	jn2Exit0(filesize >= 0);
+	jn2Exit0(offset < filesize);
 
 	filesize = ((readbytes != -1) ? readbytes : filesize);
 	buffer = new unsigned char[filesize + 1];
-	toExit0(buffer);
+	jn2Exit0(buffer);
 
 	rsize = fread(buffer, sizeof(unsigned char), filesize, file);
-	toExit0(ferror(file) == 0);
-	toExit0(rsize <= filesize);
+	jn2Exit0(ferror(file) == 0);
+	jn2Exit0(rsize <= filesize);
 	buffer[rsize] = '\0';
 
 	*content = buffer;
@@ -136,16 +136,16 @@ ENGINE_API int fileContent(const char* filename, unsigned char** content, size_t
 	FILE*		  file    = 0;
 	unsigned char* buffer = 0;
 	
-	toExit0(filename);
-	toExit0(filename[0] != '\0');
-	toExit0(content);
+	jn2Exit0(filename);
+	jn2Exit0(filename[0] != '\0');
+	jn2Exit0(content);
 
 	retc = fopen_s(&file, filename, "rb");
-	toExit0(retc == 0);
-	toExit0(file);
+	jn2Exit0(retc == 0);
+	jn2Exit0(file);
 
 	rsize = fileContent(file, &buffer, offset, readbytes);
-	toExit0(rsize != -1);
+	jn2Exit0(rsize != -1);
 
 	*content = buffer;
 	result   = (int)rsize;
@@ -165,16 +165,16 @@ ENGINE_API int fileContent(const wchar_t* filename, unsigned char** content, siz
 	FILE*		   file   = 0;
 	unsigned char* buffer = 0;
 
-	toExit0(filename);
-	toExit0(filename[0] != L'\0');
-	toExit0(content);
+	jn2Exit0(filename);
+	jn2Exit0(filename[0] != L'\0');
+	jn2Exit0(content);
 
 	retc = _wfopen_s(&file, filename, L"rb");
-	toExit0(retc == 0);
-	toExit0(file);
+	jn2Exit0(retc == 0);
+	jn2Exit0(file);
 
 	rsize = fileContent(file, &buffer, offset, readbytes);
-	toExit0(rsize != -1);
+	jn2Exit0(rsize != -1);
 
 	*content = buffer;
 	result   = (int)rsize;
@@ -205,24 +205,24 @@ ENGINE_API int fileContentW(const wchar_t* filename, wchar_t** content)
 	unsigned char* buffer   = 0;
 	CODE_PAGE	   codepage = cpInvalid;
 
-	toExit0(filename);
-	toExit0(filename[0] != L'\0');
-	toExit0(content);
+	jn2Exit0(filename);
+	jn2Exit0(filename[0] != L'\0');
+	jn2Exit0(content);
 
 	retc = _wfopen_s(&file, filename, L"rb");
-	toExit0(retc == 0);
-	toExit0(file);
+	jn2Exit0(retc == 0);
+	jn2Exit0(file);
 
 	codepage = codePage(file);
-	toExit0(codepage != cpInvalid);
+	jn2Exit0(codepage != cpInvalid);
 
 	rsize = fileContent(file, &buffer);
-	toExit0(rsize != -1);
-	toExit0(buffer);
+	jn2Exit0(rsize != -1);
+	jn2Exit0(buffer);
 	
 	wsize = (size_t)translateWidechar(buffer, rsize, &wcontent, codepage, true);
-	toExit0(wsize != -1);
-	toExit0(wcontent);
+	jn2Exit0(wsize != -1);
+	jn2Exit0(wcontent);
 	
 	*content = wcontent;
 	result   = (int)wsize;
@@ -262,16 +262,16 @@ ENGINE_API int translateWidechar(unsigned char* buffer, size_t size, wchar_t** c
 	size_t	 wsize	    = 0;
 	wchar_t* wbuffer	= 0;
 
-	toExit0(buffer);
-	toExit0(codepage >= cpBegin);
-	toExit0(codepage < cpEnd);
-	toExit0(size > 0);
+	jn2Exit0(buffer);
+	jn2Exit0(codepage >= cpBegin);
+	jn2Exit0(codepage < cpEnd);
+	jn2Exit0(size > 0);
 
 	if (existhead)
 		headoffset = codepage2bytecount(codepage);
 
-	toExit0(headoffset != -1);
-	toExit0((size_t)headoffset <= size);
+	jn2Exit0(headoffset != -1);
+	jn2Exit0((size_t)headoffset <= size);
 
 	if (codepage == cpUTF8)
 	{
@@ -279,10 +279,10 @@ ENGINE_API int translateWidechar(unsigned char* buffer, size_t size, wchar_t** c
 		int lastsize = (int)(size - headoffset);
 
 		wsize = ::MultiByteToWideChar(CP_UTF8, 0, (const char *)startbuffer, lastsize, NULL, 0);
-		toExit0(wsize > 0);
+		jn2Exit0(wsize > 0);
 
 		wbuffer = new wchar_t[wsize + 1];
-		toExit0(wbuffer);
+		jn2Exit0(wbuffer);
 
 		::MultiByteToWideChar(CP_UTF8, 0, (const char *)startbuffer, lastsize, wbuffer, (int)wsize);
 		wbuffer[wsize] = L'\0';
@@ -293,7 +293,7 @@ ENGINE_API int translateWidechar(unsigned char* buffer, size_t size, wchar_t** c
 		wsize = size - headoffset;
 
 		wbuffer = new wchar_t[wsize + 1];
-		toExit0(wbuffer);
+		jn2Exit0(wbuffer);
 
 		memcpy(wbuffer, startbuffer, wsize); 
 		wbuffer[size] = L'\0';
@@ -305,10 +305,10 @@ ENGINE_API int translateWidechar(unsigned char* buffer, size_t size, wchar_t** c
 	else
 	{
 		wsize = ::MultiByteToWideChar(CP_ACP, 0, (const char *)buffer, (int)size, NULL, 0);
-		toExit0(wsize > 0);
+		jn2Exit0(wsize > 0);
 
 		wbuffer = new wchar_t[wsize + 1];
-		toExit0(wbuffer);
+		jn2Exit0(wbuffer);
 
 		::MultiByteToWideChar(CP_ACP, 0, (const char *)buffer, (int)size, wbuffer, (int)wsize);
 		wbuffer[wsize] = L'\0';
@@ -382,10 +382,10 @@ ENGINE_API CODE_PAGE codePage(FILE *file)
 	const int HEAD_SIZE = 3;
 	unsigned char bhead[HEAD_SIZE] = {0};
 	
-	toExit0(file);
+	jn2Exit0(file);
 
 	fread(bhead, sizeof(unsigned char), HEAD_SIZE, file);
-	toExit0(ferror(file) == 0);
+	jn2Exit0(ferror(file) == 0);
 
 	if (bhead[0] == 0xFF && bhead[1] == 0xFE)
 	{
@@ -416,15 +416,15 @@ ENGINE_API CODE_PAGE codePage(const char *filename)
 	FILE *file = NULL;
 	unsigned char *buffer = NULL;
 
-	toExit0(filename);
-	toExit0(filename[0] != '\0');
+	jn2Exit0(filename);
+	jn2Exit0(filename[0] != '\0');
 
 	nretcode = fopen_s(&file, filename, "rb");
-	toExit0(nretcode == 0);
-	toExit0(file);
+	jn2Exit0(nretcode == 0);
+	jn2Exit0(file);
 
 	eResult = codePage(file);
-	toExit0(eResult != cpInvalid);
+	jn2Exit0(eResult != cpInvalid);
 Exit0:
 	SAFE_FILE_CLOSE(file);
 	return eResult;
@@ -439,15 +439,15 @@ ENGINE_API CODE_PAGE codePage(const wchar_t *filename)
 	FILE *file = NULL;
 	unsigned char *buffer = NULL;
 	
-	toExit0(filename);
-	toExit0(filename[0] != L'\0');
+	jn2Exit0(filename);
+	jn2Exit0(filename[0] != L'\0');
 
 	nret = _wfopen_s(&file, filename, L"rb");
-	toExit0(nret == 0);
-	toExit0(file);
+	jn2Exit0(nret == 0);
+	jn2Exit0(file);
 
 	eResult = codePage(file);
-	toExit0(eResult != cpInvalid);
+	jn2Exit0(eResult != cpInvalid);
 
 Exit0:
 	SAFE_FILE_CLOSE(file);
