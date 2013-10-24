@@ -120,9 +120,9 @@ struct CMArg
         int      nValue;
         float    fValue;
         double   lfValue;
-        DWORD    dwValue;
         char*    pszValue;
         void*    pvUserData;
+        unsigned int dwValue;
     };
     BYTE         byType;
 };

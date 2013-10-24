@@ -15,26 +15,26 @@ static int lua_loadIni(lua_State* L)
 {
     int ret = false;
     int top = 0;
-    const char* pszFile = NULL;
-    const char* pszMode = NULL;
-    IniFile* ini = NULL;
+    const char* filename = 0;
+    const char* mode = 0;
+    IniFile* ini = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 1 || top == 2);
 
-    pszFile = lua_tostring(L, 1);
-    jn2Exit0(pszFile);
+    filename = lua_tostring(L, 1);
+    jn2Exit0(filename);
 
     if (top > 1)
     {
-        pszMode = (char *)lua_tostring(L, 2);
-        jn2Exit0(pszMode);
+        mode = (char *)lua_tostring(L, 2);
+        jn2Exit0(mode);
     }
 
     ini = new IniFile;
     jn2Exit0(ini);
 
-    ret = ini->Load(pszFile, pszMode);
+    ret = ini->Load(filename, mode);
     jn2Exit0(ret);
 
     ret = createLuaobj(L, ini);
@@ -52,7 +52,7 @@ static int lua_createIni(lua_State* L)
 {
     int ret = false;
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 0);
@@ -73,7 +73,7 @@ Exit0:
 static int lua_closeIni(lua_State* L)
 {
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 1);
@@ -90,14 +90,14 @@ static int luaIni_getString(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtPtrs},
     };
-    char szValue[MAX_PATH];
+    char value[MAX_PATH];
 
     top = lua_gettop(L);
     jn2Exit0(top == 3 || top == 4);
@@ -105,13 +105,13 @@ static int luaIni_getString(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
     
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->GetString(Args[0].pszValue, Args[1].pszValue, Args[2].pszValue, szValue, _countof(szValue) - 1);
+    ret = ini->GetString(args[0].pszValue, args[1].pszValue, args[2].pszValue, value, _countof(value) - 1);
     jn2Exit0(ret);
 
-    lua_pushstring(L, szValue);
+    lua_pushstring(L, value);
     return 1;
 Exit0:
     return 0;
@@ -121,10 +121,10 @@ static int luaIni_getInt(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    int nValue = 0;
-    IniFile* ini = NULL;
+    int value = 0;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtInt},
@@ -136,13 +136,13 @@ static int luaIni_getInt(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->GetInt(Args[0].pszValue, Args[1].pszValue, Args[2].nValue, nValue);
+    ret = ini->GetInt(args[0].pszValue, args[1].pszValue, args[2].nValue, value);
     jn2Exit0(ret);
 
-    lua_pushinteger(L, nValue);
+    lua_pushinteger(L, value);
     return 1;
 Exit0:
     return 0;
@@ -153,9 +153,9 @@ static int luaIni_getFloat(lua_State* L)
     int ret = 0;
     int top = 0;
     float value = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtFloat},
@@ -167,10 +167,10 @@ static int luaIni_getFloat(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->GetFloat(Args[0].pszValue, Args[1].pszValue, Args[2].fValue, value);
+    ret = ini->GetFloat(args[0].pszValue, args[1].pszValue, args[2].fValue, value);
     jn2Exit0(ret);
 
     lua_pushnumber(L, value);
@@ -184,9 +184,9 @@ static int luaIni_getDouble(lua_State* L)
     int ret = 0;
     int top = 0;
     double value = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtDouble},
@@ -198,10 +198,10 @@ static int luaIni_getDouble(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->GetDouble(Args[0].pszValue, Args[1].pszValue, Args[2].lfValue, value);
+    ret = ini->GetDouble(args[0].pszValue, args[1].pszValue, args[2].lfValue, value);
     jn2Exit0(ret);
 
     lua_pushnumber(L, value);
@@ -214,9 +214,9 @@ static int luaIni_writeString(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtPtrs},
@@ -228,10 +228,10 @@ static int luaIni_writeString(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->WriteString(Args[0].pszValue, Args[1].pszValue, Args[2].pszValue);
+    ret = ini->WriteString(args[0].pszValue, args[1].pszValue, args[2].pszValue);
     jn2Exit0(ret);
     
     lua_pushboolean(L, true);
@@ -244,9 +244,9 @@ static int luaIni_writeInt(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtInt},
@@ -258,10 +258,10 @@ static int luaIni_writeInt(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->WriteInt(Args[0].pszValue, Args[1].pszValue, Args[2].nValue);
+    ret = ini->WriteInt(args[0].pszValue, args[1].pszValue, args[2].nValue);
     jn2Exit0(ret);
 
     lua_pushboolean(L, true);
@@ -274,9 +274,9 @@ static int luaIni_writeFloat(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtFloat},
@@ -288,10 +288,10 @@ static int luaIni_writeFloat(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->WriteFloat(Args[0].pszValue, Args[1].pszValue, Args[2].fValue);
+    ret = ini->WriteFloat(args[0].pszValue, args[1].pszValue, args[2].fValue);
     jn2Exit0(ret);
 
     lua_pushboolean(L, true);
@@ -304,9 +304,9 @@ static int luaIni_writeDouble(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
-    CMArg Args[3] = {
+    CMArg args[3] = {
         {0, vtPtrs},
         {0, vtPtrs},
         {0, vtDouble},
@@ -318,10 +318,10 @@ static int luaIni_writeDouble(lua_State* L)
     ini = userdataToObj<IniFile>(L, 1);
     jn2Exit0(ini);
 
-    ret = lua_getArgs(L, Args, _countof(Args), top, 2);
+    ret = lua_getArgs(L, args, _countof(args), top, 2);
     jn2Exit0(ret);
 
-    ret = ini->WriteDouble(Args[0].pszValue, Args[1].pszValue, Args[2].lfValue);
+    ret = ini->WriteDouble(args[0].pszValue, args[1].pszValue, args[2].lfValue);
     jn2Exit0(ret);
 
     lua_pushboolean(L, true);
@@ -334,8 +334,8 @@ static int luaIni_removeSection(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
-    const char* section = NULL;
+    IniFile* ini = 0;
+    const char* section = 0;
     
     top = lua_gettop(L);
     jn2Exit0(top == 2);
@@ -359,9 +359,9 @@ static int luaIni_nextSection(lua_State* L)
 {
     int ret = 0;
     int top = 0;
-    IniFile* ini = NULL;
-    const char* section = NULL;
-    const char* nextSection = NULL;
+    IniFile* ini = 0;
+    const char* section = 0;
+    const char* nextSection = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 2);
@@ -384,7 +384,7 @@ Exit0:
 static int luaIni_sectionCount(lua_State* L)
 {
     int top = 0;
-    IniFile* ini = NULL;
+    IniFile* ini = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 1);
@@ -401,8 +401,8 @@ Exit0:
 static int luaIni_isSectionExist(lua_State* L)
 {
     int top = 0;
-    IniFile* ini = NULL;
-    const char* section = NULL;
+    IniFile* ini = 0;
+    const char* section = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 2);
@@ -423,8 +423,8 @@ static int luaIni_save(lua_State* L)
 {
     int res = false;
     int top = 0;
-    IniFile* ini = NULL;
-    const char* path = NULL;
+    IniFile* ini = 0;
+    const char* path = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 2);
@@ -471,10 +471,10 @@ static const struct luaL_Reg ini_libs[] = {
 
 int lua_displayInilib(lua_State* L)
 {
-    int nTable = 0;
+    int tableIndex = 0;
 
     lua_newtable(L);
-    nTable = lua_gettop(L);
+    tableIndex = lua_gettop(L);
 
     luaL_Reg* funcs = (luaL_Reg*)global_funs;
     for ( int i = 1 ;funcs && funcs->name && funcs->func; ++funcs)
@@ -493,7 +493,7 @@ int lua_displayInilib(lua_State* L)
         lua_pushstring(L, funcs->name);
         lua_settable(L, -3);
     }
-    lua_settable(L, nTable);
+    lua_settable(L, tableIndex);
     return 1;
 }
 

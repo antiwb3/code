@@ -9,15 +9,15 @@
 static int lua_isDir(lua_State* L)
 {
     int top = 0;
-    const char* pszPath = NULL;
+    const char* path = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 1);
     
-    pszPath = lua_tostring(L, 1);
-    jn2Exit0(pszPath);
+    path = lua_tostring(L, 1);
+    jn2Exit0(path);
 
-    lua_pushboolean(L, IsDir(pszPath));
+    lua_pushboolean(L, IsDir(path));
     return 1;
 Exit0:
     return 0;
@@ -26,15 +26,15 @@ Exit0:
 static int lua_isPathExist(lua_State* L)
 {
     int top = 0;
-    const char* pszPath = NULL;
+    const char* path = 0;
 
     top = lua_gettop(L);
     jn2Exit0(top == 1);
 
-    pszPath = lua_tostring(L, 1);
-    jn2Exit0(pszPath);
+    path = lua_tostring(L, 1);
+    jn2Exit0(path);
 
-    lua_pushboolean(L, IsPathExist(pszPath));
+    lua_pushboolean(L, IsPathExist(path));
     return 1;
 Exit0:
     return 0;
@@ -43,20 +43,20 @@ Exit0:
 static int lua_removePathSpec(lua_State* L)
 {
     int top = 0;
-    const char* pszPath = NULL;
-    char szPath[MAX_PATH];
+    const char* path = 0;
+    char buff[MAX_PATH];
 
     top = lua_gettop(L);
     jn2Exit0(top == 1);
 
-    pszPath = lua_tostring(L, 1);
-    jn2Exit0(pszPath);
+    path = lua_tostring(L, 1);
+    jn2Exit0(path);
     
-    strncpy_s( szPath,  _countof(szPath) - 1, pszPath, strlen(szPath) );
-    szPath[ _countof(szPath) - 1 ] = '\0';
-    RemovePathSpec(szPath);
+    strncpy_s( buff,  _countof(buff) - 1, path, strlen(buff) );
+    buff[ _countof(buff) - 1 ] = '\0';
+    RemovePathSpec(buff);
 
-    lua_pushstring(L, szPath);
+    lua_pushstring(L, buff);
     return 1;
 Exit0:
     return 0;
@@ -66,15 +66,15 @@ static int lua_makeDir(lua_State* L)
 {
     int res = false;
     int top = 0;
-    const char* pszPath = NULL;
+    const char* path = NULL;
 
     top = lua_gettop(L);
     jn2Exit0(top == 1);
 
-    pszPath = lua_tostring(L, 1);
-    jn2Exit0(pszPath);
+    path = lua_tostring(L, 1);
+    jn2Exit0(path);
 
-    res = MakeDir(pszPath);
+    res = MakeDir(path);
     lua_pushboolean(L, res);
     return 1;
 Exit0:
@@ -84,25 +84,25 @@ Exit0:
 static int lua_pathCat(lua_State* L)
 {
     int top = 0;
-    const char* pszDst = NULL;
-    const char* pszSrc = NULL;
-    char szPath[MAX_PATH];
+    const char* dstPath = NULL;
+    const char* srcPath = NULL;
+    char buff[MAX_PATH];
 
     top = lua_gettop(L);
     jn2Exit0(top == 2);
 
-    pszDst = lua_tostring(L, 1);
-    jn2Exit0(pszDst);
+    dstPath = lua_tostring(L, 1);
+    jn2Exit0(dstPath);
 
-    pszSrc = lua_tostring(L, 2);
-    jn2Exit0(pszSrc);
+    srcPath = lua_tostring(L, 2);
+    jn2Exit0(srcPath);
 
-    strncpy_s( szPath,  _countof(szPath) - 1, pszDst, strlen(szPath) );
-    szPath[ _countof(szPath) - 1 ] = '\0';
+    strncpy_s( buff,  _countof(buff) - 1, dstPath, strlen(buff) );
+    buff[ _countof(buff) - 1 ] = '\0';
 
-    PathCat(szPath, _countof(szPath) - 1, pszSrc);
+    PathCat(buff, _countof(buff) - 1, srcPath);
 
-    lua_pushstring(L, szPath);
+    lua_pushstring(L, buff);
     return 1;
 Exit0:
     return 0;
@@ -117,10 +117,10 @@ static int lua_walkDir(lua_State* L)
             int res = true;
             int top = lua_gettop(L);
 
-            lua_pushvalue(L, nFunStkId);
+            lua_pushvalue(L, funStkId);
 
             lua_pushstring(L, pszPath);
-            lua_pushvalue(L, nTableStkId);
+            lua_pushvalue(L, tabStkId);
             
             lua_pushstring(L, "bDir");
             lua_pushboolean(L, (FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY));
@@ -163,37 +163,37 @@ static int lua_walkDir(lua_State* L)
             return res;
         }
 
-        int nFunStkId;
-        int nTableStkId;
+        int funStkId;
+        int tabStkId;
         lua_State* L;
     } task;
 
-    int res = false;
+    int ret = false;
     int top = 0;
-    const char* pszPath = NULL;
-    const char* pszFliter = NULL;
+    const char* path = NULL;
+    const char* fliter = NULL;
 
     top = lua_gettop(L);
     jn2Exit0(top == 2 || top == 3);
 
-    pszPath = lua_tostring(L, 1);
-    jn2Exit0(pszPath);
+    path = lua_tostring(L, 1);
+    jn2Exit0(path);
 
-    res = lua_isfunction(L, 2);
-    jn2Exit0(res);
+    ret = lua_isfunction(L, 2);
+    jn2Exit0(ret);
 
     if (top == 3)
     {
-        pszFliter = lua_tostring(L, 3);
-        jn2Exit0(pszFliter);
+        fliter = lua_tostring(L, 3);
+        jn2Exit0(fliter);
     }
 
     task.L = L;
-    task.nFunStkId = 2;
+    task.funStkId = 2;
     lua_newtable(L);
-    task.nTableStkId = lua_gettop(L);
+    task.tabStkId = lua_gettop(L);
 
-    WalkDir(pszPath, &task, pszFliter);
+    WalkDir(path, &task, fliter);
 Exit0:
     lua_settop(L, top);
     return 0;
