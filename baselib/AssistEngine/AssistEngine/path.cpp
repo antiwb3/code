@@ -144,11 +144,19 @@ int PathCat( char* pszDst, size_t uSize, const char* pszSrc )
     if ( !pszDst || !pszSrc )
         return false;
 
+    char* pszSrcA = (char* )pszSrc;
+
     size_t uDstLen = strlen(pszDst);
-    size_t uSrcLen = strlen(pszSrc);
+    size_t uSrcLen = strlen(pszSrcA);
     
     if ( uDstLen < 1 )
         return false;
+
+    if (uSrcLen > 0 && pszSrcA[0] == '\\' || pszSrcA[0] == '/')
+    {
+        pszSrcA++;
+        uSrcLen--;
+    }
 
     if ( pszDst[ uDstLen - 1 ] != '/' && pszDst[ uDstLen - 1 ] != '\\')
     {
@@ -163,7 +171,7 @@ int PathCat( char* pszDst, size_t uSize, const char* pszSrc )
     if ( uSize < uDstLen + uSrcLen + 1 ) // + '\0'
         return false;
     
-    return ( strcat_s( pszDst, uSize, pszSrc ) == 0 );
+    return ( strcat_s( pszDst, uSize, pszSrcA ) == 0 );
 }
 
 int PathCatW( wchar_t* pwszDst, size_t uSize, const wchar_t* pwszSrc)
@@ -171,11 +179,19 @@ int PathCatW( wchar_t* pwszDst, size_t uSize, const wchar_t* pwszSrc)
     if ( !pwszDst || !pwszSrc )
         return false;
 
+    wchar_t* pwszSrcA = (wchar_t* )pwszSrc;
+
     size_t uDstLen = wcslen(pwszDst);
-    size_t uSrcLen = wcslen(pwszSrc);
+    size_t uSrcLen = wcslen(pwszSrcA);
 
     if ( uDstLen < 1 )
         return false;
+
+    if (uSrcLen > 0 && pwszSrcA[0] == '\\' || pwszSrcA[0] == '/')
+    {
+        pwszSrcA++;
+        uSrcLen--;
+    }
 
     if ( pwszDst[ uDstLen - 1 ] != L'/' && pwszDst[ uDstLen - 1 ] != L'\\')
     {
@@ -190,5 +206,5 @@ int PathCatW( wchar_t* pwszDst, size_t uSize, const wchar_t* pwszSrc)
     if ( uSize < uDstLen + uSrcLen + 1 ) // + '\0'
         return false;
 
-    return ( wcscat_s( pwszDst, uSize, pwszSrc ) == 0 );
+    return ( wcscat_s( pwszDst, uSize, pwszSrcA ) == 0 );
 }

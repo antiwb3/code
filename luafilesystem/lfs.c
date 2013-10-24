@@ -881,8 +881,8 @@ int luaopen_lfs (lua_State *L) {
         dir_create_meta (L);
         lock_create_meta (L);
         luaL_newlib (L, fslib);
-        lua_pushvalue(L, -1);
-        lua_setglobal(L, LFS_LIBNAME);
+        //lua_pushvalue(L, -1);
+        //lua_setglobal(L, LFS_LIBNAME);
         set_info (L);
         return 1;
 }

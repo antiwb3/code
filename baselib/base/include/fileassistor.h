@@ -9,6 +9,7 @@
 #ifndef FILE_ASSISTOR_H_
 #define FILE_ASSISTOR_H_
 
+#include <stdio.h>
 
 #ifndef ENGINE_API
 	#define ENGINE_API

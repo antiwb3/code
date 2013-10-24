@@ -21,8 +21,8 @@
 ENGINE_API typedef rapidxml::xml_document<char>		xml_doc;
 ENGINE_API typedef rapidxml::xml_document<wchar_t> 	xml_docw;
 ENGINE_API typedef rapidxml::xml_node<char>			xml_node;
-ENGINE_API typedef rapidxml::xml_node<wchar_t>			xml_nodew;
-ENGINE_API typedef rapidxml::xml_attribute<char>		xml_attri;
+ENGINE_API typedef rapidxml::xml_node<wchar_t>		xml_nodew;
+ENGINE_API typedef rapidxml::xml_attribute<char>	xml_attri;
 ENGINE_API typedef rapidxml::xml_attribute<wchar_t>	xml_attriw;
 
 ENGINE_API xml_doc *xml_createdoc(const char *path, xml_doc *retdoc);

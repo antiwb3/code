@@ -95,14 +95,25 @@ static int import_lualib(lua_State* L)
 
     HMODULE module = LoadLib(pszlib);
     if (module == 0)
+    {
+        printf("load lib failed !\n");
         return 0;
+    }
 
     PVOID address = GetProcAddress(module, "luaopen_lib");
+    if (!address)
+    {
+        printf("can not find luaopen_lib !\n");
+        return 0;
+    }
+
     int ret = (luaopen(address))(L);
     //FreeLibrary(module);
-
     if (ret == 0)
+    {
+        printf("luaopen_lib faild !\n");
         return 0;
+    }
 
     DllHolder* pDll = new DllHolder;
     pDll->hModule = module;
@@ -114,8 +125,8 @@ static int import_lualib(lua_State* L)
         pDll->pNext = s_pDllHeader;
         s_pDllHeader = pDll;
     }
+    ret = lua_istable(L, -1);
 
-    lua_pushboolean(L, true);
     return 1;
 }
 

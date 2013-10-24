@@ -250,7 +250,11 @@ int IniFile::WriteString(const char* cpszSection, const char* cpszKey, const cha
 	{
 		return AppendKey(pSection, cpszKey, cpszValue);
 	}
-	return false;
+    else
+    {
+        pSection = AppendSection(cpszSection);
+        return AppendKey(pSection, cpszKey, cpszValue);
+    }
 }
 
 int IniFile::WriteInt(const char* cpszSection, const char* cpszKey, int nValue)

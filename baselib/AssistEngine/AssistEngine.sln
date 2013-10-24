@@ -8,15 +8,20 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Release_s|Win32 = Release_s|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Debug|Win32.Build.0 = Debug|Win32
+		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_s|Win32.ActiveCfg = Release_s|Win32
+		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_s|Win32.Build.0 = Release_s|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release|Win32.ActiveCfg = Release|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release|Win32.Build.0 = Release|Win32
 		{103BA59E-737E-4497-A4C2-0F622A1E6D90}.Debug|Win32.ActiveCfg = Debug|Win32
 		{103BA59E-737E-4497-A4C2-0F622A1E6D90}.Debug|Win32.Build.0 = Debug|Win32
+		{103BA59E-737E-4497-A4C2-0F622A1E6D90}.Release_s|Win32.ActiveCfg = Release|Win32
+		{103BA59E-737E-4497-A4C2-0F622A1E6D90}.Release_s|Win32.Build.0 = Release|Win32
 		{103BA59E-737E-4497-A4C2-0F622A1E6D90}.Release|Win32.ActiveCfg = Release|Win32
 		{103BA59E-737E-4497-A4C2-0F622A1E6D90}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
