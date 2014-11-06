@@ -1,9 +1,6 @@
 #ifndef _WIN_APP_ENTRANCE_H
 #define _WIN_APP_ENTRANCE_H
 
-#include "IScaleformUI.h"
-#include "dx11mgr.h"
-
 class WinAppEntrance
 {
 public:
@@ -24,8 +21,6 @@ private:
     void Render(double lasttime, double nowtime);
 public:
     HWND          m_Wnd;
-    IScaleformUI* m_SFUI; 
-    DX11Mgr       m_DX11Mgr;
 };
 
 #endif //!_WIN_APP_ENTRANCE_H
