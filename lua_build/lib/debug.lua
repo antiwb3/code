@@ -56,9 +56,9 @@ local function var2strEx(var, szIndent, layer)
 		for key, val in pairs(var) do
 			local szPair = ""
 			if layer == 1 then
-				szPair = var2str(val, szTbBlank, layer + 1) .. "\n"
+				szPair = var2strEx(val, szTbBlank, layer + 1) .. "\n"
 			else
-				szPair = szTbBlank .. "[" .. var2str(key, nil, layer + 1) .. "] = " .. var2str(val, szTbBlank, layer + 1) .. ",\n"
+				szPair = szTbBlank .. "[" .. var2strEx(key, nil, layer + 1) .. "] = " .. var2strEx(val, szTbBlank, layer + 1) .. ",\n"
 			end
 			
 			szCode = szCode .. szPair

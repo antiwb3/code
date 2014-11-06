@@ -16,7 +16,7 @@ inline const char *xml_allocstring(xml_doc &doc, const char *value, int balloc)
 	if (balloc && value)
 		return doc.allocate_string(value);
 
-	return value;
+	return val;
 }
 
 ENGINE_API xml_doc *xml_createdoc(const char *path, xml_doc *retdoc)
@@ -336,4 +336,118 @@ ENGINE_API char *xml_getattrivalue(xml_node *node, const char *name, const char 
 	return attri ? attri->value() : (char *)defvalue;
 Exit0:
 	return NULL;
+}
+
+ENGINE_API int xml_clonenode(xml_doc& doc, xml_node* lh_node, xml_node* rh_node, int onlychild /*= false*/)
+{
+    xml_node*  child_node   = NULL;
+    xml_attri* attri        = NULL;
+    xml_node*  new_node     = NULL;
+
+    assert(lh_node);
+    assert(rh_node);
+
+    if (!onlychild)
+    {
+        attri = rh_node->first_attribute();
+        while (attri)
+        {
+            xml_appendattri(doc, lh_node, attri->name(), attri->value());
+            attri = attri->next_attribute();
+        }
+    }
+
+    child_node = rh_node->first_node();
+    while (child_node)
+    {
+        new_node = xml_appendnode(doc, lh_node, child_node->name(), child_node->value(), true, child_node->m_type);
+        if (new_node)
+        {
+            xml_clonenode(doc, new_node, child_node);
+        }
+        child_node = child_node->next_sibling();
+    }
+    return true;
+}
+
+ENGINE_API xml_node* xml_createchild(xml_doc& doc, xml_node* parent_node, xml_node* data_node)
+{
+    xml_node* new_node = NULL;
+
+    assert(parent_node);
+    assert(data_node);
+
+    new_node = xml_appendnode(doc, parent_node, data_node->name());
+    if (new_node)
+        xml_clonenode(doc, new_node, data_node);
+
+    return new_node;
+}
+
+ENGINE_API int   xmlBool_getattri(xml_node *node, const char* name, int def /*= false*/)
+{
+    char* value = NULL;
+    int   res   = def;
+
+    assert(node);
+    assert(name);
+
+    value   = xml_getattrivalue(node, name, NULL);
+    res     = ( value ? ( xml_value2bool(value, def) ) : (def) );
+    return res;
+}
+
+ENGINE_API int   xmlInt_getattri(xml_node *node, const char* name, int def /*= 0*/)
+{
+    char* value = NULL;
+    int   res   = 0;
+
+    assert(node);
+    assert(name);
+
+    value   = xml_getattrivalue(node, name, NULL);
+    res     = ( value ? ( (int)strtoul(value, NULL, 0) ) : (def) );
+    return res;
+}
+
+ENGINE_API float xmlFloat_getattri(xml_node *node, const char* name, float def /*= 0.0f*/)
+{
+    char* value = NULL;
+    float res   = 0.0f;
+
+    assert(node);
+    assert(name);
+
+    value   = xml_getattrivalue(node, name, NULL);
+    res     = ( value ? ( (float)strtod(value, NULL) ) : (def) );
+    return res;
+}
+
+ENGINE_API double xmlDouble_getattri(xml_node *node, const char* name, double def /*= 0.0f*/)
+{
+    char*   value = NULL;
+    double  res   = 0.0;
+
+    assert(node);
+    assert(name);
+
+    value   = xml_getattrivalue(node, name, NULL);
+    res     = ( value ? ( (double)strtod(value, NULL) ) : (def) );
+    return res;
+}
+
+ENGINE_API int xml_value2bool(const char *value, int defaultvalue)
+{
+    KGLOG_PROCESS_ERROR(value);
+
+    if (!_tcsicmp(value, "true") || !_tcsicmp(value, "1"))
+    {
+        return true;
+    }
+    else if (!_tcsicmp(value, "false") || !_tcsicmp(value, "0"))
+    {
+        return false;
+    }
+Exit0:
+    return defaultvalue;
 }

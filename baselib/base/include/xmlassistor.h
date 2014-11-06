@@ -39,6 +39,16 @@ ENGINE_API void xml_addsibling(xml_node *changenode, xml_node *dst, int before =
 
 ENGINE_API char *xml_getattrivalue(xml_node *node, const char *name, const char *defvalue = 0);
 
+ENGINE_API int   xmlBool_getattri(xml_node *node, const char* name, int def = false);
+
+ENGINE_API int   xmlInt_getattri(xml_node *node, const char* name, int def = 0);
+
+ENGINE_API float xmlFloat_getattri(xml_node *node, const char* name, float def = 0.0f);
+
+ENGINE_API double xmlDouble_getattri(xml_node *node, const char* name, double def = 0.0f);
+
+ENGINE_API xml_node*  xml_createchild(xml_doc& doc, xml_node* parent_node, xml_node* data_node);
+
 ENGINE_API xml_node *xml_getnode(xml_doc &doc, const char *name, int nlayer = INT_MAX);
 
 ENGINE_API xml_node *xml_getnode(xml_node *parent, const char *name, int nlayer = INT_MAX);
@@ -51,6 +61,7 @@ ENGINE_API xml_node *xml_appendnode(xml_doc &doc, xml_node *parent, const char *
 
 ENGINE_API xml_attri *xml_appendattri(xml_doc &doc, xml_node *node, const char *name, const char *value, int balloc = true);
 
+ENGINE_API int        xml_value2bool(const char *value, int def);
 #endif // XML_ASSISTOR_H_
 
 

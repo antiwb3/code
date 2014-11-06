@@ -256,7 +256,6 @@ ENGINE_API int codepage2bytecount(CODE_PAGE codepage)
 
 ENGINE_API int translateWidechar(unsigned char* buffer, size_t size, wchar_t** content, CODE_PAGE codepage /*= cpAnsi*/, int existhead /*= false*/)
 {
-	int		 retc		= false;
 	int		 result		= ERROR_ID;
 	int		 headoffset = 0;
 	size_t	 wsize	    = 0;
@@ -325,7 +324,6 @@ Exit0:
 
 ENGINE_API int readLine(const char *content, int bytes, int& nextline)
 {
-    int retc	= false;
     int result	= -1;
 	int count	= 0;   
 
@@ -351,7 +349,6 @@ Exit0:
 
 ENGINE_API int readLineW(const wchar_t *content, int bytes, int& nextline)
 {
-	int retc	= false;
 	int result	= -1;
 	int count	= 0;   
 
