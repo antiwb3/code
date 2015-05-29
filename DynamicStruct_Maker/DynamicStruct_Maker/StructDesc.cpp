@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "DynamicStruct.h"
+#include "StructDesc.h"
 
-DynamicStruct::DynamicStruct()
+StructDesc::StructDesc()
 	: m_varCount(0)
 {
 
 }
 
-DynamicStruct::~DynamicStruct()
+StructDesc::~StructDesc()
 {
 
 }
 
-int DynamicStruct::Resize(uint count)
+int StructDesc::Resize(uint count)
 {
 	if (count > 0)
 	{
@@ -25,7 +25,7 @@ int DynamicStruct::Resize(uint count)
 	return true;
 }
 
-int DynamicStruct::SetValue(uint index, const char* name, int offset, int bytes, int type)
+int StructDesc::SetValue(uint index, const char* name, int offset, int bytes, int type)
 {
 	if (index  < m_varCount)
 	{
@@ -38,7 +38,7 @@ int DynamicStruct::SetValue(uint index, const char* name, int offset, int bytes,
 	return false;
 }
 
-int DynamicStruct::GetInfo(uint index, STRUCT_INFO* info)
+int StructDesc::GetInfo(uint index, STRUCT_INFO* info)
 {
 	if (info && index < m_varCount)
 	{
@@ -51,12 +51,12 @@ int DynamicStruct::GetInfo(uint index, STRUCT_INFO* info)
 	return false;
 }
 
-int DynamicStruct::GetVarCount()
+int StructDesc::GetVarCount()
 {
 	return m_varCount;
 }
 
-int DynamicStruct::SetInt(byte* data, uint index, int value)
+int StructDesc::SetInt(byte* data, uint index, int value)
 {
 	if (index  < m_varCount)
 	{
@@ -67,7 +67,7 @@ int DynamicStruct::SetInt(byte* data, uint index, int value)
 	return false;
 }
 
-int	DynamicStruct::SetUInt(byte* data, uint index, uint value)
+int	StructDesc::SetUInt(byte* data, uint index, uint value)
 {
 	if (index  < m_varCount)
 	{
@@ -78,7 +78,7 @@ int	DynamicStruct::SetUInt(byte* data, uint index, uint value)
 	return false;
 }
 
-int DynamicStruct::SetFloat(byte* data, uint index, float value)
+int StructDesc::SetFloat(byte* data, uint index, float value)
 {
 	if (index < m_varCount)
 	{
@@ -89,7 +89,7 @@ int DynamicStruct::SetFloat(byte* data, uint index, float value)
 	return false;
 }
 
-int DynamicStruct::SetDouble(byte* data, uint index, double value)
+int StructDesc::SetDouble(byte* data, uint index, double value)
 {
 	if (index  < m_varCount)
 	{
@@ -100,7 +100,7 @@ int DynamicStruct::SetDouble(byte* data, uint index, double value)
 	return false;
 }
 
-int DynamicStruct::SetBuffer(byte* data, uint index, const char* src)
+int StructDesc::SetBuffer(byte* data, uint index, const char* src)
 {
 	if (data && src && index < m_varCount)
 	{
@@ -117,7 +117,7 @@ int DynamicStruct::SetBuffer(byte* data, uint index, const char* src)
 	return false;
 }
 
-int DynamicStruct::GetInt(byte* data, uint index, int* retValue)
+int StructDesc::GetInt(byte* data, uint index, int* retValue)
 {
 	if (data && retValue && index < m_varCount)
 	{
@@ -128,7 +128,7 @@ int DynamicStruct::GetInt(byte* data, uint index, int* retValue)
 	return false;
 }
 
-int DynamicStruct::GetUInt(byte* data, uint index, uint* retValue)
+int StructDesc::GetUInt(byte* data, uint index, uint* retValue)
 {
 	if (data && retValue && index < m_varCount)
 	{
@@ -140,7 +140,7 @@ int DynamicStruct::GetUInt(byte* data, uint index, uint* retValue)
 }
 
 
-float DynamicStruct::GetFloat(byte* data, uint index, float* retValue)
+float StructDesc::GetFloat(byte* data, uint index, float* retValue)
 {
 	if (data && retValue && index < m_varCount)
 	{
@@ -151,7 +151,7 @@ float DynamicStruct::GetFloat(byte* data, uint index, float* retValue)
 	return false;
 }
 
-float DynamicStruct::GetDouble(byte* data, uint index, double* retValue)
+float StructDesc::GetDouble(byte* data, uint index, double* retValue)
 {
 	if (data && retValue && index < m_varCount)
 	{
@@ -162,7 +162,7 @@ float DynamicStruct::GetDouble(byte* data, uint index, double* retValue)
 	return false;
 }
 
-const char* DynamicStruct::GetBuffer(byte* data, uint index)
+const char* StructDesc::GetBuffer(byte* data, uint index)
 {
 	if (data && index < m_varCount)
 	{

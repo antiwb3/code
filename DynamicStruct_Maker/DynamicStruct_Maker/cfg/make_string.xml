@@ -1,0 +1,65 @@
+<DefFileName>StructDef.h</DefFileName>
+<StructMgrFileName>StructDescMgr.cpp</StructMgrFileName>
+
+<StructDefBegin>#ifndef _STRUCT_DEF_H
+#define _STRUCT_DEF_H
+
+#pragma pack ( push, 1 )
+</StructDefBegin>
+
+
+<StructDefEnd>#pragma pack ( pop)
+
+#endif // !_STRUCT_DEF_H
+</StructDefEnd>
+
+
+<StructDescMgrBegin>#include "stdafx.h"
+#include "StructDesc.h"
+#include "StructDescMgr.h"
+
+StructDescMgr& StructDescMgr::Instance()
+{
+	static StructDescMgr s_ins;
+	return s_ins;
+}
+
+StructDesc const* StructDescMgr::Struct(uint index)
+{
+	if (index &lt; m_structs.size())
+	{
+		return m_structs[index];	
+	}
+	return NULL;
+}
+
+int StructDescMgr::Init()
+{
+</StructDescMgrBegin>
+
+
+<StructDescMgrEnd>
+	return true;
+}
+</StructDescMgrEnd>
+
+
+<StructNewBegin>	{
+		StructDesc* info = new StructDesc();
+		if (!info)
+			return false;
+
+</StructNewBegin>
+
+
+<StructNewEnd>		m_structs.push_back(info);
+	}
+</StructNewEnd>
+
+
+<StructInitSize>		info->Resize(%d);
+</StructInitSize>
+
+
+<StructSetValue>		info->SetValue(%d, "%s", %d, %d, %s);
+</StructSetValue>

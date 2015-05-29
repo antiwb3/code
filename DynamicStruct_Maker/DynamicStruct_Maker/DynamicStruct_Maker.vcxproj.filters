@@ -17,12 +17,6 @@
     <ClInclude Include="fileassistor.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="MakeDynamicStruct.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicStruct.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="xmlassistor.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -41,7 +35,13 @@
     <ClInclude Include="typedef_ps.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicStructMgr.h">
+    <ClInclude Include="StructDesc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StructDescMgr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StructDesc_Make.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -52,16 +52,16 @@
     <ClCompile Include="fileassistor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MakeDynamicStruct.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="xmlassistor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DataToFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicStruct.cpp">
+    <ClCompile Include="StructDesc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StructDesc_Make.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DynamicStruct_Maker.cpp">

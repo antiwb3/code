@@ -1,4 +1,3 @@
 <StructCfgPath>cfg\structs.xml</StructCfgPath>
+<MakeStringPath>cfg\make_string.xml</MakeStringPath>
 <MakeDstDir>cfg</MakeDstDir>
-<DefFileName>StructDef.h</DefFileName>
-<StructMgrFileName>DynamicStructMgr.cpp</StructMgrFileName>

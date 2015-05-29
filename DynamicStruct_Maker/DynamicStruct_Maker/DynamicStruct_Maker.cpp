@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "xmlassistor.h"
 #include <string>
-#include "MakeDynamicStruct.h"
+#include "StructDesc_Make.h"
 
 
 void InitCfg(MAKE_PARAM& param)
@@ -25,16 +25,10 @@ void InitCfg(MAKE_PARAM& param)
 		param.MakeDstDir = node->value();
 	}
 
-	node = doc.first_node("DefFileName");
+	node = doc.first_node("MakeStringPath");
 	if (node)
 	{
-		param.DefFileName = node->value();
-	}
-
-	node = doc.first_node("StructMgrFileName");
-	if (node)
-	{
-		param.StructMgrFileName = node->value();
+		param.MakeStringPath = node->value();
 	}
 }
 

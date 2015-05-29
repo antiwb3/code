@@ -1,5 +1,5 @@
-#ifndef _DYNAMIC_STRUCT_H
-#define _DYNAMIC_STRUCT_H
+#ifndef _STRUCT_DESC_H
+#define _STRUCT_DESC_H
 
 #include <vector>
 #include "typedef_ps.h"
@@ -12,11 +12,11 @@ struct STRUCT_INFO
 	int			VType;
 };
 
-class DynamicStruct
+class StructDesc
 {
 public:
-	DynamicStruct();
-	~DynamicStruct();
+	StructDesc();
+	~StructDesc();
 
 public:
 	int		Resize(uint count);
@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif // ! _DYNAMIC_STRUCT_H
+#endif // ! _STRUCT_DESC_H
