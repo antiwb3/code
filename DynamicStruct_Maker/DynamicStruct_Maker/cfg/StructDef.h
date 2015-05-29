@@ -1,6 +1,7 @@
 #ifndef _STRUCT_DEF_H
 #define _STRUCT_DEF_H
 
+#pragma pack ( push, 1 )
 struct Item
 {
 	unsigned char MultiLine;
@@ -11,7 +12,7 @@ struct Item
 	char Script[128];
 };
 
-struct Image
+struct Image : Item
 {
 	unsigned char MultiLine;
 	int RowSpacing;
@@ -21,5 +22,6 @@ struct Image
 	char Script[128];
 };
 
+#pragma pack ( pop)
 
 #endif // !_STRUCT_DEF_H

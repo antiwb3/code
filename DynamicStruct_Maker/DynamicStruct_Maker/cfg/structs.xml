@@ -2,9 +2,11 @@
 <StructDefBegin>#ifndef _STRUCT_DEF_H
 #define _STRUCT_DEF_H
 
+#pragma pack ( push, 1 )
 </StructDefBegin>
 
-<StructDefEnd>
+<StructDefEnd>#pragma pack ( pop)
+
 #endif // !_STRUCT_DEF_H
 </StructDefEnd>
 
@@ -17,7 +19,7 @@ DynamicStructMgr& DynamicStructMgr::Instance()
 	return s_ins;
 }
 
-DynamicStruct const* DynamicStructMgr::Struct(unsigned int index)
+DynamicStruct const* DynamicStructMgr::Struct(uint index)
 {
 	if (index &lt; m_struct.size())
 	{
@@ -53,7 +55,7 @@ int DynamicStructMgr::Init()
 		 <VAlign type="bool">true</VAlign>
 		 <Script type="string" size="128"></Script>
 	</Item>
-	<Image>
+	<Image inherit="Item">
 		 <MultiLine type="bool">true</MultiLine>
 		 <RowSpacing  type="int">0</RowSpacing>
 		 <FontSpacing  type="int">0</FontSpacing>

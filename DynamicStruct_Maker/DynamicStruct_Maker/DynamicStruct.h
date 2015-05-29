@@ -32,6 +32,7 @@ public:
 	int		SetBuffer(byte* data, uint index, const char* src);
 
 	int		GetInt(byte* data, uint index, int* retValue);
+	int		GetUInt(byte* data, uint index, uint* retValue);
 	float	GetFloat(byte* data, uint index, float* retValue);
 	float	GetDouble(byte* data, uint index, double* retValue);
 	const char* GetBuffer(byte* data, uint index);

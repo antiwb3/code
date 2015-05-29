@@ -3,6 +3,7 @@
 #include "DataToFile.h"
 #include "DynamicStruct.h"
 #include <string>
+#include <map>
 #include "MakeDynamicStruct.h"
 
 static std::string s_StructInitBegin;
@@ -12,7 +13,12 @@ static std::string s_StructNewEnd;
 static std::string s_StructDefBegin;
 static std::string s_StructDefEnd;
 
-#define PUSH_STRUCT(buffer, str)			sprintf_s(buffer, "struct %s\n{\n", str)
+typedef std::map<std::string, int> StructOffsetMap;
+static StructOffsetMap s_StructOffsetMap;
+
+#define PUSH_STRUCT(buffer, type, str)			sprintf_s(buffer, "%s %s", type, str)
+#define PUSH_INHERIT(buffer,accessType, type)	sprintf_s(buffer, " : %s%s", accessType, type)
+
 #define PUSH_VAR(buffer, varType, str)		sprintf_s(buffer, "	%s %s;\n", varType, str)
 #define PUSH_VAR_BUFFER(buffer, str, size)	sprintf_s(buffer, "	char %s[%d];\n",  str, size)
 
@@ -100,7 +106,7 @@ int StartMakeCode(MAKE_PARAM const& param)
 
 	initDataDTF.Finish();
 	classDefDTF.Finish();
-
+	s_StructOffsetMap.clear();
 	return true;
 }
 
@@ -109,17 +115,39 @@ static int DoneMakeCode(xml_node* structNode, DataToFile& classDefDTF, DataToFil
 	xml_node* child = 0;
 	char buffer[MAX_PATH];
 	char* value = 0;
+	char* sType = 0;
+	char* sInherit = 0;
+	int offset = 0;
+	int count = 0;
 
-	PUSH_STRUCT(buffer, structNode->name());
+	sType = xml_getattrivalue(structNode, "type", "struct");
+	PUSH_STRUCT(buffer, sType, structNode->name());
 	initDataDTF.AppendStr(buffer);
 
+	sInherit = xml_getattrivalue(structNode, "inherit");
+	if (sInherit)
+	{
+		if (_stricmp(sType, "class") == 0)
+		{
+			PUSH_INHERIT(buffer, "public ", sInherit);
+			initDataDTF.AppendStr(buffer);
+		}
+		else
+		{
+			PUSH_INHERIT(buffer, "", sInherit);
+			initDataDTF.AppendStr(buffer);
+		}
+		StructOffsetMap::iterator it = s_StructOffsetMap.find(sInherit);
+		if (it != s_StructOffsetMap.end())
+			offset = (*it).second;
+	}
+	initDataDTF.AppendStr("\n{\n");
 	sprintf_s(buffer, "\n	//==== struct %s info init! =======================================\n", structNode->name());
 	classDefDTF.AppendStr(buffer);
 	classDefDTF.AppendStr(s_StructNewBegin.c_str());
 
-	int offset = 0;
-	int count = 0;
-
+	
+	count = 0;
 	child = structNode->first_node();
 	while (child)
 	{
@@ -185,6 +213,7 @@ static int DoneMakeCode(xml_node* structNode, DataToFile& classDefDTF, DataToFil
 		index++;
 		child = child->next_sibling();
 	}
+	s_StructOffsetMap.insert(std::make_pair(structNode->name(), offset));
 
 	initDataDTF.AppendStr("};\n\n");
 

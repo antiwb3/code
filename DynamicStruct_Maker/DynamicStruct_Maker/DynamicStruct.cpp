@@ -67,6 +67,17 @@ int DynamicStruct::SetInt(byte* data, uint index, int value)
 	return false;
 }
 
+int	DynamicStruct::SetUInt(byte* data, uint index, uint value)
+{
+	if (index  < m_varCount)
+	{
+		uint* ptr = (uint *)( data + m_varOffsets[ index ] );
+		(*ptr) = value;
+		return true;
+	}
+	return false;
+}
+
 int DynamicStruct::SetFloat(byte* data, uint index, float value)
 {
 	if (index < m_varCount)
@@ -116,6 +127,18 @@ int DynamicStruct::GetInt(byte* data, uint index, int* retValue)
 	}
 	return false;
 }
+
+int DynamicStruct::GetUInt(byte* data, uint index, uint* retValue)
+{
+	if (data && retValue && index < m_varCount)
+	{
+		uint* ptr = (uint *)( data + m_varOffsets[ index ] );
+		(*retValue) = (*ptr);
+		return true;
+	}
+	return false;
+}
+
 
 float DynamicStruct::GetFloat(byte* data, uint index, float* retValue)
 {
