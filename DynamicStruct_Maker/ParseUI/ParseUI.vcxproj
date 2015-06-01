@@ -11,17 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F5FA2154-5EE0-4C4C-9CA4-5A7D16879B86}</ProjectGuid>
+    <ProjectGuid>{E2FA1316-046C-41B5-A59D-C704031525FC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>IniTest</RootNamespace>
-    <ProjectName>DynamicStruct_Maker</ProjectName>
+    <RootNamespace>ParseUI</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -82,27 +81,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\file_package\fileassistor.h" />
-    <ClInclude Include="..\..\file_package\public.h" />
-    <ClInclude Include="..\..\file_package\typedef_ps.h" />
-    <ClInclude Include="..\..\file_package\xmlassistor.h" />
-    <ClInclude Include="DataToFile.h" />
-    <ClInclude Include="StructDesc.h" />
-    <ClInclude Include="StructDescMgr.h" />
-    <ClInclude Include="StructDesc_Make.h" />
+    <ClInclude Include="..\..\file_package\inifile.h" />
+    <ClInclude Include="..\..\file_package\struct\StructDef.h" />
+    <ClInclude Include="..\..\file_package\struct\StructDesc.h" />
+    <ClInclude Include="..\..\file_package\struct\StructDescMgr.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\file_package\fileassistor.cpp" />
-    <ClCompile Include="..\..\file_package\xmlassistor.cpp" />
-    <ClCompile Include="DataToFile.cpp" />
-    <ClCompile Include="DynamicStruct_Maker.cpp" />
-    <ClCompile Include="StructDesc.cpp" />
+    <ClCompile Include="..\..\file_package\inifile.cpp" />
+    <ClCompile Include="..\..\file_package\struct\StructDesc.cpp" />
+    <ClCompile Include="..\..\file_package\struct\StructDescMgr.cpp" />
+    <ClCompile Include="ParseUI.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StructDesc_Make.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

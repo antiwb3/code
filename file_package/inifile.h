@@ -83,6 +83,11 @@ public:
 
 	int IsSectionExist(const char *cpszSection);
 
+	IniSection* FindSection(const char* cpszSection = 0);
+
+public:
+	static const char* GetValue(IniSection* pSection, const char* cpszKey);
+
 private:
 	int ParseLine(char* pszLine, size_t uLen);
 

@@ -9,30 +9,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\file">
+      <UniqueIdentifier>{ca005d45-fca3-4a5e-97ae-2fce6ae3d49b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="fileassistor.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xmlassistor.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataToFile.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="public.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="typedef_ps.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="StructDesc.h">
@@ -44,15 +35,21 @@
     <ClInclude Include="StructDesc_Make.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\file_package\fileassistor.h">
+      <Filter>Source Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\public.h">
+      <Filter>Source Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\typedef_ps.h">
+      <Filter>Source Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\xmlassistor.h">
+      <Filter>Source Files\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fileassistor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xmlassistor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DataToFile.cpp">
@@ -66,6 +63,12 @@
     </ClCompile>
     <ClCompile Include="DynamicStruct_Maker.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\file_package\fileassistor.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\file_package\xmlassistor.cpp">
+      <Filter>Source Files\file</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

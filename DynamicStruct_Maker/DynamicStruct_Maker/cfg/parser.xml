@@ -1,0 +1,65 @@
+<Parser>
+	<KItemNull>
+		<AniID>
+			nValue = toInt(it->first);
+			pIni->GetInteger(pcszSectionName, "AniID", 0, &nValue);
+			if (nValue != 0)
+			{
+				UIAPlayParam& rAniParam = OutData.AniParam;
+				rAniParam.dwAniID = nValue;
+				pIni->GetFloat(pcszSectionName,  "AniSPercentX",     0, &rAniParam.fSPercentX);
+				pIni->GetFloat(pcszSectionName,  "AniSPercentY",     0, &rAniParam.fSPercentY);
+				pIni->GetInteger(pcszSectionName, "AniDelayTime", 0, &rAniParam.nDelayTime);
+				pIni->GetInteger(pcszSectionName, "AniCalcByTwoPoint", 0, &rAniParam.bEndPos);
+				if (rAniParam.bEndPos)
+				{
+					pIni->GetFloat(pcszSectionName, "AniEPercentX", 0, &rAniParam.fEPercentX);
+					pIni->GetFloat(pcszSectionName, "AniEPercentY", 0, &rAniParam.fEPercentY);
+				}
+				else
+				{
+					pIni->GetFloat(pcszSectionName, "AniScale",  1.0f, &rAniParam.fScale);
+					pIni->GetFloat(pcszSectionName, "AniRotate", 0.0f, &rAniParam.fRotate);
+				}
+			}
+		</AniID>
+	</KItemNull>
+</Parser>
+
+<structs>
+	<KItemNull>
+		<Left type="int">0</Left>
+		<Top type="int">0</Top>
+		<Width type="int">0</Width>
+		<Height type="int">0</Height>
+		<PosType type="int">0</PosType>
+		<EventID type="int">0</EventID>
+		<DisableScale type="int">0</DisableScale>
+		<LockShowAndHide type="bool">0</LockShowAndHide>
+		<TipIndex type="int" parser="KItemNull/TipIndex">0</TipIndex>
+		<ShowTipType type="int" parser="none">0</ShowTipType>
+		<TipRichText type="bool" parser="none">0</TipRichText>
+		<Alpha type="int">0</Alpha>
+		<ScriptTextID type="int" parser="KItemNull/ScriptTextID">-1</ScriptTextID>
+		<AreaTestIndex type="int" parser="KItemNull/AreaTestIndex">-1</AreaTestIndex>
+		<IntPos type="int">0</IntPos>
+		<UnLoad type="int">0</UnLoad>
+		<Link type="int" parser="KItemNull/Link">0</Link>
+		
+		<AniID type="int" parser="KItemNull/AniID">0</AniID>
+		<AniSPercentX  type="float" parser="none">0</AniSPercentX>
+		<AniSPercentY  type="float" parser="none">0</AniSPercentY>
+		<AniDelayTime type="int" parser="none">true</AniDelayTime>
+		<AniCalcByTwoPoint type="bool" parser="none">true</AniCalcByTwoPoint>
+		<AniEPercentX type="float" parser="none">true</AniEPercentX>
+		<AniEPercentY type="float" parser="none">true</AniEPercentY>
+	</Item>
+	<Image inherit="KItemNull">
+		 <MultiLine type="bool">true</MultiLine>
+		 <RowSpacing  type="int">0</RowSpacing>
+		 <FontSpacing  type="int">0</FontSpacing>
+		 <HAlign type="bool">true</HAlign>
+		 <VAlign type="bool">true</VAlign>
+		 <Script type="string" size="128"></Script>
+	</Image>
+</structs>

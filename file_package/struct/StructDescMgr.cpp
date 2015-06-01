@@ -26,7 +26,7 @@ int StructDescMgr::Init()
 		if (!info)
 			return false;
 
-		info->Resize(19);
+		info->Resize(26);
 		info->SetValue(0, "Left", 0, 4, vtInt);
 		info->SetValue(1, "Top", 4, 4, vtInt);
 		info->SetValue(2, "Width", 8, 4, vtInt);
@@ -46,6 +46,13 @@ int StructDescMgr::Init()
 		info->SetValue(16, "AniCalcByTwoPoint", 182, 1, vtBool);
 		info->SetValue(17, "AniEPercentX", 183, 4, vtFloat);
 		info->SetValue(18, "AniEPercentY", 187, 4, vtFloat);
+		info->SetValue(19, "AniID", 191, 4, vtInt);
+		info->SetValue(20, "AniSPercentX", 195, 4, vtFloat);
+		info->SetValue(21, "AniSPercentY", 199, 4, vtFloat);
+		info->SetValue(22, "AniDelayTime", 203, 4, vtInt);
+		info->SetValue(23, "AniCalcByTwoPoint", 207, 1, vtBool);
+		info->SetValue(24, "AniEPercentX", 208, 4, vtFloat);
+		info->SetValue(25, "AniEPercentY", 212, 4, vtFloat);
 		m_structs.push_back(info);
 	}
 
@@ -56,12 +63,12 @@ int StructDescMgr::Init()
 			return false;
 
 		info->Resize(6);
-		info->SetValue(0, "MultiLine", 191, 1, vtBool);
-		info->SetValue(1, "RowSpacing", 192, 4, vtInt);
-		info->SetValue(2, "FontSpacing", 196, 4, vtInt);
-		info->SetValue(3, "HAlign", 200, 1, vtBool);
-		info->SetValue(4, "VAlign", 201, 1, vtBool);
-		info->SetValue(5, "Script", 202, 128, vtBuffer);
+		info->SetValue(0, "MultiLine", 0, 1, vtBool);
+		info->SetValue(1, "RowSpacing", 1, 4, vtInt);
+		info->SetValue(2, "FontSpacing", 5, 4, vtInt);
+		info->SetValue(3, "HAlign", 9, 1, vtBool);
+		info->SetValue(4, "VAlign", 10, 1, vtBool);
+		info->SetValue(5, "Script", 11, 128, vtBuffer);
 		m_structs.push_back(info);
 	}
 

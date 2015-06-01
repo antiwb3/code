@@ -20,12 +20,19 @@ struct KItemNull
 	float AniSPercentX;
 	float AniSPercentY;
 	int AniDelayTime;
+	unsigned char bEndPos;
+	float AniEPercentX;
+	float AniEPercentY;
+	int AniID;
+	float AniSPercentX;
+	float AniSPercentY;
+	int AniDelayTime;
 	unsigned char AniCalcByTwoPoint;
 	float AniEPercentX;
 	float AniEPercentY;
 };
 
-struct Image : KItemNull
+struct Image : Item
 {
 	unsigned char MultiLine;
 	int RowSpacing;

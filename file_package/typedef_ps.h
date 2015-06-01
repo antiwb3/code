@@ -49,7 +49,7 @@
 		vtInt ,
 		vtFloat ,
 		vtDouble ,
-		vtDword ,
+		vtUInt ,
 		vtPtrs ,
 		vtBuffer
 	};

@@ -6,7 +6,6 @@
 #include <string>
 #include "StructDesc_Make.h"
 
-
 void InitCfg(MAKE_PARAM& param)
 {
 	xml_doc doc;

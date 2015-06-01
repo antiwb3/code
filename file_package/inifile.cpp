@@ -12,7 +12,7 @@
 
 #if !defined(ASSISTOR_NO_STDLIB)
 	#include <cstdlib>      // For std::size_t
-	#include <assert>       // For assert
+	#include <assert.h>
 	#include <tchar.h>
 #endif
 
@@ -237,6 +237,19 @@ int IniFile::GetDouble(const char* cpszSection, const char* cpszKey, double lfDe
 	return false;
 }
 
+const char* IniFile::GetValue(IniSection* pSection, const char* cpszKey)
+{
+	if (!pSection || !cpszKey)
+		return NULL;
+
+	IniKeyMap::iterator it = pSection->KeyMap.find(cpszKey);
+	if (it != pSection->KeyMap.end())
+	{
+		return it->second;
+	}
+	return NULL;
+}
+
 int IniFile::WriteString(const char* cpszSection, const char* cpszKey, const char* cpszValue)
 {
 	assert(cpszSection);
@@ -362,6 +375,24 @@ int IniFile::GetSectionCount()
 int IniFile::IsSectionExist(const char *cpszSection)
 {
 	return (GetSection(cpszSection) != NULL);
+}
+
+IniSection* IniFile::FindSection(const char* cpszSection /*= 0*/)
+{
+	if (!cpszSection)
+	{
+		m_pSection	 = m_SectionList.m_pHeader;
+		return m_pSection;
+	}
+	else
+	{
+		IniSection* pSec = GetSection(cpszSection);
+		if (pSec)
+			m_pSection = pSec;
+
+		return pSec;
+	}
+	return NULL;
 }
 
 IniSection* IniFile::GetSection(const char* cpszSection)

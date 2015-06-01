@@ -86,7 +86,7 @@ int DataToFile::AppendStr(const char* str)
 	{
 		fwrite(str, sizeof(char), len, m_file);
 	}
-	else if (m_bufferSize - len - m_offset >= 0)
+	else if (m_bufferSize - len - m_offset > 1)
 	{
 		CopyToBuffer(m_buffer, m_offset, m_bufferSize, str);
 	}

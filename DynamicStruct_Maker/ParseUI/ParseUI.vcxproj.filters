@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\struct">
+      <UniqueIdentifier>{2fbd1b55-f3eb-4ab7-9b10-a4f0175715e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\file">
+      <UniqueIdentifier>{8a04b85f-5988-42e5-971c-b06640457a0b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\struct\StructDef.h">
+      <Filter>src\struct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\struct\StructDesc.h">
+      <Filter>src\struct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\struct\StructDescMgr.h">
+      <Filter>src\struct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\fileassistor.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\file_package\inifile.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseUI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\file_package\struct\StructDesc.cpp">
+      <Filter>src\struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\file_package\struct\StructDescMgr.cpp">
+      <Filter>src\struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\file_package\fileassistor.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\file_package\inifile.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
