@@ -25,7 +25,7 @@ ENGINE_API int MakeDir( const char* pszDir );
 ENGINE_API int MakeDirW( const wchar_t* pwszDir );
 ENGINE_API int PathCat( char* pszDst, size_t uSize, const char* pszSrc );
 ENGINE_API int PathCatW( wchar_t* pszDst, size_t uSize, const wchar_t* pszSrc);
-
+ENGINE_API int GetFileName( const char* pszPath, char* pszResult, size_t uSize);
 /*
 class Task
 {

@@ -208,3 +208,31 @@ int PathCatW( wchar_t* pwszDst, size_t uSize, const wchar_t* pwszSrc)
 
     return ( wcscat_s( pwszDst, uSize, pwszSrcA ) == 0 );
 }
+
+int GetFileName( const char* pszPath, char* pszResult, size_t uSize)
+{
+	if ( !pszPath || !pszResult )
+		return false;
+
+	size_t uLen = strlen(pszPath);
+	if (uLen > 0 && pszPath[uLen - 1] == '\\' || pszPath[uLen - 1] == '/')
+	{
+		uLen--;
+	}
+
+	size_t uCount = 0;
+	for (int i = (int)uLen - 1; i >= 0; i--)
+	{
+		if ( pszPath[i] == '/' || pszPath[i] == '\\' )
+		{
+			if (uCount == 0 || uCount > uSize)
+				return false;
+
+			strncpy_s(pszResult, uSize, (pszPath + i + 1) , uCount);
+			break;
+		}
+		else
+			uCount++;
+	}
+	return true;
+}
