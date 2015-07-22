@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\image_render">
+      <UniqueIdentifier>{91dde39b-eb85-4b2e-85f7-aadceae1385d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dx11Test.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="dx11mgr.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="WinAppEntrance.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="DxAssist.h">
+      <Filter>src\image_render</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintEngine.h">
+      <Filter>src\image_render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStruct.h">
+      <Filter>src\image_render</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderTable.h">
+      <Filter>src\image_render</Filter>
+    </ClInclude>
+    <ClInclude Include="typedef_ps.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Render_Test.h">
+      <Filter>src\image_render</Filter>
+    </ClInclude>
+    <ClInclude Include="dxTutorial07Test.h">
+      <Filter>src\image_render</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dx11Test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dx11mgr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="WinAppEntrance.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="DxAssist.cpp">
+      <Filter>src\image_render</Filter>
+    </ClCompile>
+    <ClCompile Include="PaintEngine.cpp">
+      <Filter>src\image_render</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderTable.cpp">
+      <Filter>src\image_render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render_Test.cpp">
+      <Filter>src\image_render</Filter>
+    </ClCompile>
+    <ClCompile Include="dxTutorial07Test.cpp">
+      <Filter>src\image_render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="dx11Test.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="dx11Test.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader_data.inl">
+      <Filter>src\image_render</Filter>
+    </None>
+    <None Include="XMFloat2Math.inl">
+      <Filter>src</Filter>
+    </None>
+  </ItemGroup>
+</Project>
