@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\xml">
+      <UniqueIdentifier>{ba42ae65-1dca-4e9f-af9a-f379f1b55550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread">
+      <UniqueIdentifier>{8c9e4b2e-15c1-4d92-95b9-cd975696e3db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{cf002a2e-b84a-4d50-8db7-e9040b6f0fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\objectpool">
+      <UniqueIdentifier>{88c79433-c7d6-4c3b-9aef-7f71061d3ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file">
+      <UniqueIdentifier>{cf18ec8f-9ad6-4fc7-ab06-c1bfa271da6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\path">
+      <UniqueIdentifier>{831a243d-d407-40de-9fb7-c23b76b2b96d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xmlassistor.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\base\src\Thread\thread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\base\src\objectpool\miniobjpool.cpp">
+      <Filter>Source Files\objectpool</Filter>
+    </ClCompile>
+    <ClCompile Include="fileassistor.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="inifile.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="path.cpp">
+      <Filter>Source Files\path</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\src\Thread\thread.h">
+      <Filter>Source Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="projconf.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\src\objectpool\miniobjpool.h">
+      <Filter>Source Files\objectpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\include\objectpool.h">
+      <Filter>Source Files\objectpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\include\fileassistor.h">
+      <Filter>Source Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\include\inifile.h">
+      <Filter>Source Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\include\path.h">
+      <Filter>Source Files\path</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\base\include\xmlassistor.h">
+      <Filter>Source Files\xml</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

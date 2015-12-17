@@ -109,9 +109,15 @@ static int luaIni_getString(lua_State* L)
     jn2Exit0(ret);
 
     ret = ini->GetString(args[0].pszValue, args[1].pszValue, args[2].pszValue, value, _countof(value) - 1);
-    jn2Exit0(ret);
-
-    lua_pushstring(L, value);
+	if (ret)
+		lua_pushstring(L, value);
+	else
+	{
+		if (args[2].pszValue)
+			lua_pushstring(L, args[2].pszValue);
+		else
+			lua_pushnil(L);
+	}
     return 1;
 Exit0:
     return 0;
@@ -140,7 +146,6 @@ static int luaIni_getInt(lua_State* L)
     jn2Exit0(ret);
 
     ret = ini->GetInt(args[0].pszValue, args[1].pszValue, args[2].nValue, value);
-    jn2Exit0(ret);
 
     lua_pushinteger(L, value);
     return 1;
@@ -171,7 +176,6 @@ static int luaIni_getFloat(lua_State* L)
     jn2Exit0(ret);
 
     ret = ini->GetFloat(args[0].pszValue, args[1].pszValue, args[2].fValue, value);
-    jn2Exit0(ret);
 
     lua_pushnumber(L, value);
     return 1;
@@ -202,7 +206,6 @@ static int luaIni_getDouble(lua_State* L)
     jn2Exit0(ret);
 
     ret = ini->GetDouble(args[0].pszValue, args[1].pszValue, args[2].lfValue, value);
-    jn2Exit0(ret);
 
     lua_pushnumber(L, value);
     return 1;
@@ -372,7 +375,7 @@ static int luaIni_nextSection(lua_State* L)
     section = lua_tostring(L, 2);
     jn2Exit0(section);
 
-    nextSection = ini->NextSection(section);
+    nextSection = ini->NextSection((section[0] != 0 ? section :  NULL));
     jn2Exit0(nextSection);
 
     lua_pushstring(L, nextSection);

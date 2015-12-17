@@ -15,6 +15,7 @@
 #endif
 
 #include <map>
+#include <vector>
 
 struct IniKey
 {
@@ -30,12 +31,21 @@ struct LessEqual
 	}
 };
 
-typedef std::map<const char *, const char *, LessEqual> IniKeyMap;
+struct KeyData
+{
+	const char* pszKey;
+	const char* pszValue;
+	int nPriority;
+};
+typedef std::vector<KeyData *> KeyDataVector;
+
+typedef std::map<const char *, KeyData, LessEqual> IniKeyMap;
 
 struct IniSection
 {
 	char*		pszSection;
 	IniKeyMap	KeyMap;		
+	int			nOrder;
 
 	IniSection* pNext;
 };

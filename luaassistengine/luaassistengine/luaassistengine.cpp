@@ -53,7 +53,6 @@ __declspec(dllexport) int luaopen_lib(lua_State *L) {
     //lua_openxmllib(L);
     //lua_openFAssistorlib(L, table);
     lua_regFuns2Table(L, global_funs, table);
-
     return 1;
 }
 

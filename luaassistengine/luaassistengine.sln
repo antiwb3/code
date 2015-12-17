@@ -1,15 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaassistengine", "luaassistengine\luaassistengine.vcproj", "{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaassistengine", "luaassistengine\luaassistengine.vcxproj", "{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua5.2.2", "I:\kingsoft\DevEnv\lua-5.2.2\lua5.2.2.vcproj", "{5A30AF6A-F81E-480C-836D-27FD95A1012C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua5.2.2", "I:\kingsoft\DevEnv\lua-5.2.2\lua5.2.2.vcxproj", "{5A30AF6A-F81E-480C-836D-27FD95A1012C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luafilesystem", "..\luafilesystem\luafilesystem.vcproj", "{289CA0E4-72D8-424A-A238-8AD36D416353}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luafilesystem", "..\luafilesystem\luafilesystem.vcxproj", "{289CA0E4-72D8-424A-A238-8AD36D416353}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaexcutePlus", "..\luaexcutePlus\luaexcutePlus\luaexcutePlus.vcproj", "{D253D751-A431-49D8-84C0-51CE172421AB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaexcutePlus", "..\luaexcutePlus\luaexcutePlus\luaexcutePlus.vcxproj", "{D253D751-A431-49D8-84C0-51CE172421AB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssistEngine", "..\baselib\AssistEngine\AssistEngine\AssistEngine.vcproj", "{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssistEngine", "..\baselib\AssistEngine\AssistEngine\AssistEngine.vcxproj", "{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,7 @@ Global
 		Release_lib|Win32 = Release_lib|Win32
 		Release_libC|Win32 = Release_libC|Win32
 		Release_s|Win32 = Release_s|Win32
+		Release_Static|Win32 = Release_Static|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -37,6 +38,8 @@ Global
 		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release_libC|Win32.Build.0 = Release|Win32
 		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release_s|Win32.ActiveCfg = Release|Win32
 		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release_s|Win32.Build.0 = Release|Win32
+		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release_Static|Win32.ActiveCfg = Release|Win32
+		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release_Static|Win32.Build.0 = Release|Win32
 		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release|Win32.ActiveCfg = Release|Win32
 		{6A2EB9FE-D258-4C99-980D-119ADDDDA74E}.Release|Win32.Build.0 = Release|Win32
 		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Debug_c|Win32.ActiveCfg = Debug|Win32
@@ -52,6 +55,8 @@ Global
 		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release_libC|Win32.Build.0 = Release_libC|Win32
 		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release_s|Win32.ActiveCfg = Release_libC|Win32
 		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release_s|Win32.Build.0 = Release_libC|Win32
+		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release_Static|Win32.ActiveCfg = Release_lib|Win32
+		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release_Static|Win32.Build.0 = Release_lib|Win32
 		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release|Win32.ActiveCfg = Release|Win32
 		{5A30AF6A-F81E-480C-836D-27FD95A1012C}.Release|Win32.Build.0 = Release|Win32
 		{289CA0E4-72D8-424A-A238-8AD36D416353}.Debug_c|Win32.ActiveCfg = Debug|Win32
@@ -68,12 +73,14 @@ Global
 		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release_libC|Win32.Build.0 = Release_c|Win32
 		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release_s|Win32.ActiveCfg = Release_c|Win32
 		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release_s|Win32.Build.0 = Release_c|Win32
+		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release_Static|Win32.ActiveCfg = Release_c|Win32
+		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release_Static|Win32.Build.0 = Release_c|Win32
 		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release|Win32.ActiveCfg = Release|Win32
 		{289CA0E4-72D8-424A-A238-8AD36D416353}.Release|Win32.Build.0 = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Debug_c|Win32.ActiveCfg = Debug_c|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Debug_c|Win32.Build.0 = Debug_c|Win32
-		{D253D751-A431-49D8-84C0-51CE172421AB}.Debug|Win32.ActiveCfg = Debug|Win32
-		{D253D751-A431-49D8-84C0-51CE172421AB}.Debug|Win32.Build.0 = Debug|Win32
+		{D253D751-A431-49D8-84C0-51CE172421AB}.Debug|Win32.ActiveCfg = Release|Win32
+		{D253D751-A431-49D8-84C0-51CE172421AB}.Debug|Win32.Build.0 = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_c|Win32.ActiveCfg = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_c|Win32.Build.0 = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_dll|Win32.ActiveCfg = Release|Win32
@@ -84,6 +91,8 @@ Global
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_libC|Win32.Build.0 = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_s|Win32.ActiveCfg = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_s|Win32.Build.0 = Release|Win32
+		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_Static|Win32.ActiveCfg = Release_Static|Win32
+		{D253D751-A431-49D8-84C0-51CE172421AB}.Release_Static|Win32.Build.0 = Release_Static|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release|Win32.ActiveCfg = Release|Win32
 		{D253D751-A431-49D8-84C0-51CE172421AB}.Release|Win32.Build.0 = Release|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Debug_c|Win32.ActiveCfg = Debug|Win32
@@ -100,6 +109,8 @@ Global
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_libC|Win32.Build.0 = Release_s|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_s|Win32.ActiveCfg = Release_s|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_s|Win32.Build.0 = Release_s|Win32
+		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_Static|Win32.ActiveCfg = Release_s|Win32
+		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release_Static|Win32.Build.0 = Release_s|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release|Win32.ActiveCfg = Release|Win32
 		{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

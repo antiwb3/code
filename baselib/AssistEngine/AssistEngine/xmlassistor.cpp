@@ -16,7 +16,7 @@ inline const char *xml_allocstring(xml_doc &doc, const char *value, int balloc)
 	if (balloc && value)
 		return doc.allocate_string(value);
 
-	return val;
+	return value;
 }
 
 ENGINE_API xml_doc *xml_createdoc(const char *path, xml_doc *retdoc)
@@ -272,7 +272,7 @@ Exit0:
 	return NULL;
 }
 
-ENGINE_API xml_node *xml_appendnode(xml_doc &doc, xml_node *parent, const char *key, const char *value/* = 0*/, int balloc /*= true*/)
+ENGINE_API xml_node *xml_appendnode(xml_doc &doc, xml_node *parent, const char *key, const char *value/* = 0*/, int balloc /*= true*/, rapidxml::node_type /*= rapidxml::node_element*/)
 {
 	xml_node *node = NULL;
 	const char *newkey = NULL;
@@ -438,13 +438,13 @@ ENGINE_API double xmlDouble_getattri(xml_node *node, const char* name, double de
 
 ENGINE_API int xml_value2bool(const char *value, int defaultvalue)
 {
-    KGLOG_PROCESS_ERROR(value);
+    PROCESS_ERROR(value);
 
-    if (!_tcsicmp(value, "true") || !_tcsicmp(value, "1"))
+    if (!_stricmp(value, "true") || !_stricmp(value, "1"))
     {
         return true;
     }
-    else if (!_tcsicmp(value, "false") || !_tcsicmp(value, "0"))
+    else if (!_stricmp(value, "false") || !_stricmp(value, "0"))
     {
         return false;
     }

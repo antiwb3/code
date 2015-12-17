@@ -1,4 +1,4 @@
-dofile("E:\\lua_build\\lib\\debug.lua")
+dofile("D:\\GitHub\\code\\lua_build\\lib\\debug.lua")
 
 importdir("E:\\lua_build\\lib")
 local dll = importdll("luaassistengine.dll")

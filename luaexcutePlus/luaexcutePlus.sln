@@ -1,11 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaexcutePlus", "luaexcutePlus\luaexcutePlus.vcproj", "{D253D751-A431-49D8-84C0-51CE172421AB}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaexcutePlus", "luaexcutePlus\luaexcutePlus.vcxproj", "{D253D751-A431-49D8-84C0-51CE172421AB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua5.2.2", "D:\kingsoft\DevEnv\lua-5.2.2\lua5.2.2.vcproj", "{5A30AF6A-F81E-480C-836D-27FD95A1012C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luafilesystem", "..\luafilesystem\luafilesystem.vcproj", "{289CA0E4-72D8-424A-A238-8AD36D416353}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luafilesystem", "..\luafilesystem\luafilesystem.vcxproj", "{289CA0E4-72D8-424A-A238-8AD36D416353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

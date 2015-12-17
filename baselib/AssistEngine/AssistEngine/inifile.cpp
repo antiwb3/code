@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include "fileassistor.h"
 #include <string.h>
+#include <algorithm>
 #include "inifile.h"
 
 #if !defined(ASSISTOR_NO_STDLIB)
@@ -16,6 +17,10 @@
 	#include <tchar.h>
 #endif
 
+static bool KeyDataCmpFunc(const KeyData* plh, const KeyData* prh)
+{
+	return plh->nPriority < prh->nPriority;
+}
 
 
 IniFile::IniFile()
@@ -98,7 +103,8 @@ int IniFile::Save(const char* cpszFile)
 	int   nLen   = 0;
 
 	char szBuff[2048];
-	
+	static KeyDataVector s_aKeyData;
+
 	fopen_s(&pFile, cpszFile, "w");
 	if (!pFile)
 		goto Exit0;
@@ -122,10 +128,17 @@ int IniFile::Save(const char* cpszFile)
 		}
 
 		IniKeyMap& rMap = pSection->KeyMap;
+		s_aKeyData.clear();
 		for (IniKeyMap::iterator it = rMap.begin(); it != rMap.end(); ++it)
 		{
-			nLen  = (int)strlen(it->first);
-			nLen += (int)strlen(it->second);
+			s_aKeyData.push_back(&it->second);
+		}
+
+		sort(s_aKeyData.begin(), s_aKeyData.end(), KeyDataCmpFunc);
+		for (KeyDataVector::iterator it = s_aKeyData.begin(); it != s_aKeyData.end(); ++it)
+		{
+			nLen  = (int)strlen((*it)->pszKey);
+			nLen += (int)strlen((*it)->pszValue);
 			nLen += 2;
 
 			if (nOffset + nLen >= _countof(szBuff))
@@ -138,7 +151,7 @@ int IniFile::Save(const char* cpszFile)
 			assert(nOffset + nLen < _countof(szBuff));
 			if (nOffset + nLen < _countof(szBuff))
 			{
-				sprintf_s(szBuff + nOffset, _countof(szBuff) - nOffset, "%s=%s\n", it->first, it->second);
+				sprintf_s(szBuff + nOffset, _countof(szBuff) - nOffset, "%s=%s\n", (*it)->pszKey, (*it)->pszValue);
 				nOffset += nLen;
 			}
 		}
@@ -177,14 +190,14 @@ int IniFile::GetString(const char* cpszSection, const char* cpszKey, const char*
 	char* cpszFind = (char* )GetValue(cpszSection, cpszKey);
 	if (cpszFind && uLen > 0)
 	{
-		strcpy_s(pszValue, uLen, cpszFind);
+		strncpy_s(pszValue, uLen, cpszFind, _TRUNCATE);
 		pszValue[uLen - 1] = '\0';
 		return true;
 	}
 
-	if (uLen > 0)
+	if (uLen > 0 && cpszDefault)
 	{
-		strcpy_s(pszValue, uLen, cpszDefault);
+		strncpy_s(pszValue, uLen, cpszDefault, _TRUNCATE);
 		pszValue[uLen - 1] = '\0';
 	}
 	return false;
@@ -387,7 +400,7 @@ const char* IniFile::GetValue(const char* cpszSection, const char* cpszKey)
 	{
 		IniKeyMap::iterator it = pSection->KeyMap.find(cpszKey);
 		if (it != pSection->KeyMap.end())
-			return it->second;
+			return it->second.pszValue;
 	}
 	return NULL;
 }
@@ -439,10 +452,14 @@ int IniFile::ParseKey(char* pszLine, size_t uLen)
 		pszFind[0]	 = '\0';
 
 		char* pszValue = pszFind + 1;
-
 		if (m_bReadOnly)
 		{
-			m_pSection->KeyMap.insert(std::make_pair(pszKey, pszValue));
+			KeyData data;
+			data.pszKey = pszKey;
+			data.pszValue = pszValue;
+			data.nPriority = m_pSection->nOrder;
+			m_pSection->nOrder++;
+			m_pSection->KeyMap.insert(std::make_pair(pszKey, data));
 		}
 		else
 		{
@@ -472,6 +489,7 @@ IniSection* IniFile::AppendSection(const char* cpszSection)
 
 	pSection->pNext		 = NULL;
 	pSection->pszSection = NULL;
+	pSection->nOrder	 = 0;
 	if (m_bReadOnly)
 	{
 		pSection->pszSection = (char *)cpszSection;
@@ -524,7 +542,7 @@ int IniFile::AppendKey(IniSection* pSection, const char* cpszKey, const char* cp
 	IniKeyMap::iterator it	= rMap.find(cpszKey);
 	if (it != rMap.end())
 	{
-		char* pszValue = (char *)it->second;
+		char* pszValue = (char *)it->second.pszValue;
 		size_t uSize = strlen(cpszValue) + 1;
 		pszValue = (char *)realloc(pszValue, uSize);
 		if (!pszValue)
@@ -532,7 +550,7 @@ int IniFile::AppendKey(IniSection* pSection, const char* cpszKey, const char* cp
 
 		strcpy_s(pszValue, uSize, cpszValue);
 		pszValue[uSize - 1] = '\0';
-		it->second = pszValue;
+		it->second.pszValue = pszValue;
 	}
 	else
 	{
@@ -554,7 +572,12 @@ int IniFile::AppendKey(IniSection* pSection, const char* cpszKey, const char* cp
 		strcpy_s(pszValue, uValue, cpszValue);
 		pszValue[uValue - 1] = '\0';
 
-		rMap.insert(std::make_pair(pszKey, pszValue));
+		KeyData data;
+		data.pszKey = pszKey;
+		data.pszValue = pszValue;
+		data.nPriority = pSection->nOrder;
+		pSection->nOrder++;
+		rMap.insert(std::make_pair(pszKey, data));
 	}
 
 	return true;
@@ -571,7 +594,7 @@ void IniFile::Free(IniSection* pSection)
 		for (IniKeyMap::iterator it = pSection->KeyMap.begin(); it != pSection->KeyMap.end(); ++it)
 		{
 			delete[] it->first;
-			delete[] it->second;
+			delete[] it->second.pszValue;
 		}
 	}
 

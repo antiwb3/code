@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssistEngine", "AssistEngine\AssistEngine.vcproj", "{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssistEngine", "AssistEngine\AssistEngine.vcxproj", "{F184F98F-8C0E-4BAA-8E23-87CC8685B3F5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcproj", "{103BA59E-737E-4497-A4C2-0F622A1E6D90}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{103BA59E-737E-4497-A4C2-0F622A1E6D90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

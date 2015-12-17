@@ -57,9 +57,11 @@ ENGINE_API xml_node *xml_getnode(xml_doc &doc, const char *attriname, const char
 
 ENGINE_API xml_node *xml_getnode(xml_node *parent, const char *attriname, const char *attrivalue, int nlayer = INT_MAX);
 
-ENGINE_API xml_node *xml_appendnode(xml_doc &doc, xml_node *parent, const char *key, const char *value = 0, int balloc = true);
+ENGINE_API xml_node *xml_appendnode(xml_doc &doc, xml_node *parent, const char *key, const char *value = 0, int balloc = true, rapidxml::node_type = rapidxml::node_element);
 
 ENGINE_API xml_attri *xml_appendattri(xml_doc &doc, xml_node *node, const char *name, const char *value, int balloc = true);
+
+ENGINE_API int xml_clonenode(xml_doc& doc, xml_node* lh_node, xml_node* rh_node, int onlychild = false);
 
 ENGINE_API int        xml_value2bool(const char *value, int def);
 #endif // XML_ASSISTOR_H_
